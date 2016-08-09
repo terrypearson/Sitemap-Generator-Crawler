@@ -27,8 +27,23 @@ Usage is pretty strait forward:
 
 It is recommended you don't remove the above for future reference.
 */
+
+// Turn PHP command line parameters into $_REQUEST arguments so that we can pass stuff via cron job.
+if (php_sapi_name() === 'cli') {
+	parse_str(implode('&', array_slice($argv, 1)), $_REQUEST);
+}
+
+//Defaults
 $file      = "sitemap.xml";
 $url       = "https://www.knyz.org";
+
+if(array_key_exists('sitemapFile',$_REQUEST)){
+    $file=$_REQUEST['sitemapFile'];
+}
+if(array_key_exists('baseUrl',$_REQUEST)){
+    $url=$_REQUEST['baseUrl'];
+}
+
 $extension = array(
     "/",
     "php",
