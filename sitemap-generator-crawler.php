@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 Sitemap Generator by Slava Knyazev
 
